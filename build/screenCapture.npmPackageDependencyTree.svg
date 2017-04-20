@@ -1,0 +1,36 @@
+<svg height="526" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="526" fill="#555" width="720"></rect>
+<text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
+<tspan x="10" y="26">12 megabytes installed</tspan>
+<tspan x="10" y="42"></tspan>
+<tspan x="10" y="58">node_modules</tspan>
+<tspan x="10" y="74">└─┬ deepstream.io@2.2.0 </tspan>
+<tspan x="10" y="90">  ├── adm-zip@0.4.7 </tspan>
+<tspan x="10" y="106">  ├── colors@1.1.2 </tspan>
+<tspan x="10" y="122">  ├─┬ commander@2.9.0 </tspan>
+<tspan x="10" y="138">  │ └── graceful-readlink@1.0.1 </tspan>
+<tspan x="10" y="154">  ├─┬ glob@7.1.1 </tspan>
+<tspan x="10" y="170">  │ ├── fs.realpath@1.0.0 </tspan>
+<tspan x="10" y="186">  │ ├─┬ inflight@1.0.6 </tspan>
+<tspan x="10" y="202">  │ │ └── wrappy@1.0.2 </tspan>
+<tspan x="10" y="218">  │ ├── inherits@2.0.3 </tspan>
+<tspan x="10" y="234">  │ ├─┬ minimatch@3.0.3 </tspan>
+<tspan x="10" y="250">  │ │ └─┬ brace-expansion@1.1.7 </tspan>
+<tspan x="10" y="266">  │ │   ├── balanced-match@0.4.2 </tspan>
+<tspan x="10" y="282">  │ │   └── concat-map@0.0.1 </tspan>
+<tspan x="10" y="298">  │ ├── once@1.4.0 </tspan>
+<tspan x="10" y="314">  │ └── path-is-absolute@1.0.1 </tspan>
+<tspan x="10" y="330">  ├─┬ js-yaml@3.8.3 </tspan>
+<tspan x="10" y="346">  │ ├─┬ argparse@1.0.9 </tspan>
+<tspan x="10" y="362">  │ │ └── sprintf-js@1.0.3 </tspan>
+<tspan x="10" y="378">  │ └── esprima@3.1.3 </tspan>
+<tspan x="10" y="394">  ├─┬ mkdirp@0.5.1 </tspan>
+<tspan x="10" y="410">  │ └── minimist@0.0.8 </tspan>
+<tspan x="10" y="426">  ├─┬ needle@1.6.0 </tspan>
+<tspan x="10" y="442">  │ ├─┬ debug@2.6.3 </tspan>
+<tspan x="10" y="458">  │ │ └── ms@0.7.2 </tspan>
+<tspan x="10" y="474">  │ └── iconv-lite@0.4.15 </tspan>
+<tspan x="10" y="490">  └── uws@0.12.0  (git+https://github.com/deepstreamIO/uws-dependency.git#5a515f964d0032059045f3\</tspan>
+<tspan x="10" y="506">a5b455a45faa641bd8)</tspan>
+</text>
+</svg>

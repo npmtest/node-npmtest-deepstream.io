@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-deepstream.io/node_modules/deepstream.io/src/rpc/rpc-handler.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-deepstream.io">npmtest-deepstream.io (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-deepstream.io/node_modules/deepstream.io/src/rpc/rpc-handler.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">7% <small>(7 / 100)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">7% <small>(7 / 100)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-deepstream.io/node_modules/deepstream.io/src/rpc/</a> &#187; rpc-handler.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+&nbsp;
+const C = require('../constants/constants')
+const SubscriptionRegistry = require('../utils/subscription-registry')
+const Rpc = require('./rpc')
+const RpcProxy = require('./rpc-proxy')
+const utils = require('../utils/utils')
+&nbsp;
+module.exports = class RpcHandler {
+  /**
+  * Handles incoming messages for the RPC Topic.
+  *
+  * @param {Object} options deepstream options
+  */
+  constructor <span class="fstat-no" title="function not covered" >(options) {</span>
+<span class="cstat-no" title="statement not covered" >    this._options = options</span>
+<span class="cstat-no" title="statement not covered" >    this._subscriptionRegistry = new SubscriptionRegistry(options, C.TOPIC.RPC)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._privateTopic = C.TOPIC.PRIVATE + this._options.serverName</span>
+<span class="cstat-no" title="statement not covered" >    this._options.messageConnector.subscribe(</span>
+      this._privateTopic,
+      this._onPrivateMessage.bind(this)
+    )
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._rpcs = new Map()</span>
+  }
+&nbsp;
+  /**
+  * Main interface. Handles incoming messages
+  * from the message distributor
+  *
+  * @param   {SocketWrapper} socketWrapper
+  * @param   {Object} message parsed and validated deepstream message
+  *
+  * @public
+  * @returns {void}
+  */
+  handle <span class="fstat-no" title="function not covered" >(socketWrapper, message) {</span>
+<span class="cstat-no" title="statement not covered" >    if (message.action === C.ACTIONS.SUBSCRIBE) {</span>
+<span class="cstat-no" title="statement not covered" >      this._registerProvider(socketWrapper, message)</span>
+    } else <span class="cstat-no" title="statement not covered" >if (message.action === C.ACTIONS.UNSUBSCRIBE) {</span>
+<span class="cstat-no" title="statement not covered" >      this._unregisterProvider(socketWrapper, message)</span>
+    } else <span class="cstat-no" title="statement not covered" >if (message.action === C.ACTIONS.REQUEST) {</span>
+<span class="cstat-no" title="statement not covered" >      this._makeRpc(socketWrapper, message)</span>
+    } else <span class="cstat-no" title="statement not covered" >if (</span>
+      message.action === C.ACTIONS.RESPONSE ||
+      message.action === C.ACTIONS.ACK ||
+      message.action === C.ACTIONS.REJECTION ||
+      message.action === C.ACTIONS.ERROR
+    ) {
+<span class="cstat-no" title="statement not covered" >      const rpcNameIndex = (message.action === C.ACTIONS.ACK || message.action === C.ACTIONS.ERROR)</span>
+        ? 1 : 0
+<span class="cstat-no" title="statement not covered" >      const correlationId = message.data[rpcNameIndex + 1]</span>
+<span class="cstat-no" title="statement not covered" >      const rpcData = this._rpcs.get(correlationId)</span>
+<span class="cstat-no" title="statement not covered" >      if (rpcData) {</span>
+<span class="cstat-no" title="statement not covered" >        rpcData.rpc.handle(message)</span>
+<span class="cstat-no" title="statement not covered" >        if (rpcData.rpc.isComplete) {</span>
+<span class="cstat-no" title="statement not covered" >          this._rpcs.delete(correlationId)</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered" >        socketWrapper.sendError(</span>
+          C.TOPIC.RPC,
+          C.EVENT.INVALID_MESSAGE_DATA,
+          `unexpected state for rpc ${message.data[rpcNameIndex]} with action ${message.action}`
+        )
+      }
+    } else {
+      /*
+      *  RESPONSE-, ERROR-, REJECT- and ACK messages from the provider are processed
+      * by the Rpc class directly
+      */
+<span class="cstat-no" title="statement not covered" >      this._options.logger.log(C.LOG_LEVEL.WARN, C.EVENT.UNKNOWN_ACTION, message.action)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (socketWrapper !== C.SOURCE_MESSAGE_CONNECTOR) {</span>
+<span class="cstat-no" title="statement not covered" >        socketWrapper.sendError(C.TOPIC.RPC, C.EVENT.UNKNOWN_ACTION, `unknown action ${message.action}`)</span>
+      }
+    }
+  }
+&nbsp;
+  /**
+  * This method is called by Rpc to reroute its request
+  *
+  * If a provider is temporarily unable to service a request, it can reject it. Deepstream
+  * will then try to reroute it to an alternative provider. Finding an alternative provider
+  * happens in this method.
+  *
+  * Initially, deepstream will look for a local provider that hasn't been used by the RPC yet.
+  * If non can be found, it will go through the currently avaiblable remote providers and try
+  * find one that hasn't been used yet.
+  *
+  * If a remote provider couldn't be found or all remote-providers have been tried already
+  * this method will return null - which in turn will prompt the RPC to send a NO_RPC_PROVIDER
+  * error to the client
+  *
+  * @param {String}  rpcName
+  * @param {String}  correlationId
+  *
+  * @public
+  * @returns {SocketWrapper|RpcProxy} alternativeProvider
+  */
+  getAlternativeProvider <span class="fstat-no" title="function not covered" >(rpcName, correlationId) {</span>
+<span class="cstat-no" title="statement not covered" >    const rpcData = this._rpcs.get(correlationId)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const subscribers = Array.from(this._subscriptionRegistry.getLocalSubscribers(rpcName))</span>
+<span class="cstat-no" title="statement not covered" >    let index = utils.getRandomIntInRange(0, subscribers.length)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let n = 0; n &lt; subscribers.length; ++n) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!rpcData.providers.has(subscribers[index])) {</span>
+<span class="cstat-no" title="statement not covered" >        rpcData.providers.add(subscribers[index])</span>
+<span class="cstat-no" title="statement not covered" >        return subscribers[index]</span>
+      }
+<span class="cstat-no" title="statement not covered" >      index = (index + 1) % subscribers.length</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!rpcData.servers) {</span>
+<span class="cstat-no" title="statement not covered" >      return null</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const servers = this._subscriptionRegistry.getAllRemoteServers(rpcName)</span>
+<span class="cstat-no" title="statement not covered" >    index = utils.getRandomIntInRange(0, servers.length)</span>
+<span class="cstat-no" title="statement not covered" >    for (let n = 0; n &lt; servers.length; ++n) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!rpcData.servers.has(servers[index])) {</span>
+<span class="cstat-no" title="statement not covered" >        rpcData.servers.add(servers[index])</span>
+<span class="cstat-no" title="statement not covered" >        return new RpcProxy(this._options, C.TOPIC.PRIVATE + servers[index], rpcName, correlationId)</span>
+      }
+<span class="cstat-no" title="statement not covered" >      index = (index + 1) % servers.length</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return null</span>
+  }
+&nbsp;
+  /**
+  * Callback for subscription messages. Registers
+  * a client as a provider for specific remote
+  * procedure calls as identified by &lt;rpcName&gt;
+  *
+  * @param   {SocketWrapper} socketWrapper
+  * @param   {Object} message parsed and validated deepstream message
+  *
+  * @private
+  * @returns {void}
+  */
+  _registerProvider <span class="fstat-no" title="function not covered" >(socketWrapper, message) {</span>
+<span class="cstat-no" title="statement not covered" >    if (isValidMessage(1, socketWrapper, message)) {</span>
+<span class="cstat-no" title="statement not covered" >      this._subscriptionRegistry.subscribe(message.data[0], socketWrapper)</span>
+    }
+  }
+&nbsp;
+  /**
+  * Callback for unsubscribe messages. Removes
+  * a client as a provider for specific remote
+  * procedure calls as identified by &lt;rpcName&gt;
+  *
+  * @param   {SocketWrapper} socketWrapper
+  * @param   {Object} message parsed and validated deepstream message
+  *
+  * @private
+  * @returns {void}
+  */
+  _unregisterProvider <span class="fstat-no" title="function not covered" >(socketWrapper, message) {</span>
+<span class="cstat-no" title="statement not covered" >    if (isValidMessage(1, socketWrapper, message)) {</span>
+<span class="cstat-no" title="statement not covered" >      this._subscriptionRegistry.unsubscribe(message.data[0], socketWrapper)</span>
+    }
+  }
+&nbsp;
+  /**
+  * Executes a RPC. If there are clients connected to
+  * this deepstream instance that can provide the rpc, it
+  * will be routed to a random one of them, otherwise it will be routed
+  * to the message connector
+  *
+  * @param   {SocketWrapper} socketWrapper
+  * @param   {Object} message parsed and validated deepstream message
+  *
+  * @private
+  * @returns {void}
+  */
+  _makeRpc <span class="fstat-no" title="function not covered" >(socketWrapper, message, source) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!isValidMessage(2, socketWrapper, message)) {</span>
+<span class="cstat-no" title="statement not covered" >      return</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const rpcName = message.data[0]</span>
+<span class="cstat-no" title="statement not covered" >    const correlationId = message.data[1]</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const rpcData = {</span>
+      providers: new Set(),
+      servers: source !== C.SOURCE_MESSAGE_CONNECTOR ? new Set() : null,
+      rpc: null
+    }
+<span class="cstat-no" title="statement not covered" >    this._rpcs.set(correlationId, rpcData)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const subscribers = Array.from(this._subscriptionRegistry.getLocalSubscribers(rpcName))</span>
+<span class="cstat-no" title="statement not covered" >    const provider = subscribers[utils.getRandomIntInRange(0, subscribers.length)]</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (provider) {</span>
+<span class="cstat-no" title="statement not covered" >      rpcData.providers.add(provider)</span>
+<span class="cstat-no" title="statement not covered" >      rpcData.rpc = new Rpc(this, socketWrapper, provider, this._options, message)</span>
+    } else <span class="cstat-no" title="statement not covered" >if (source === C.SOURCE_MESSAGE_CONNECTOR) {</span>
+<span class="cstat-no" title="statement not covered" >      socketWrapper.sendError(C.TOPIC.RPC, C.EVENT.NO_RPC_PROVIDER, [rpcName, correlationId])</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this._makeRemoteRpc(socketWrapper, message)</span>
+    }
+  }
+&nbsp;
+  /**
+  * Callback to remoteProviderRegistry.getProviderProxy()
+  *
+  * If a remote provider is available this method will route the rpc to it.
+  *
+  * If no remote provider could be found this class will return a
+  * NO_RPC_PROVIDER error to the requestor. The RPC won't continue from
+  * thereon
+  *
+  * @param   {SocketWrapper} requestor
+  * @param   {Object} message   RPC Request message
+  *
+  * @private
+  * @returns {void}
+  */
+  _makeRemoteRpc <span class="fstat-no" title="function not covered" >(requestor, message) {</span>
+<span class="cstat-no" title="statement not covered" >    const rpcName = message.data[0]</span>
+<span class="cstat-no" title="statement not covered" >    const correlationId = message.data[1]</span>
+<span class="cstat-no" title="statement not covered" >    const rpcData = this._rpcs.get(correlationId)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const servers = this._subscriptionRegistry.getAllRemoteServers(rpcName)</span>
+<span class="cstat-no" title="statement not covered" >    const server = servers[Math.round(Math.random() * (servers.length - 1))]</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (server) {</span>
+<span class="cstat-no" title="statement not covered" >      const rpcProxy = new RpcProxy(this._options, C.TOPIC.PRIVATE + server, rpcName, correlationId)</span>
+<span class="cstat-no" title="statement not covered" >      rpcData.rpc = new Rpc(this, requestor, rpcProxy, this._options, message)</span>
+<span class="cstat-no" title="statement not covered" >      return</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._rpcs.delete(correlationId)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this._options.logger.log(C.LOG_LEVEL.WARN, C.EVENT.NO_RPC_PROVIDER, rpcName)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (requestor !== C.SOURCE_MESSAGE_CONNECTOR) {</span>
+<span class="cstat-no" title="statement not covered" >      requestor.sendError(C.TOPIC.RPC, C.EVENT.NO_RPC_PROVIDER, [rpcName, correlationId])</span>
+    }
+  }
+&nbsp;
+  /**
+  * Callback for messages that are send directly to
+  * this deepstream instance.
+  *
+  * Please note: Private messages are generic, so the RPC
+  * specific ones need to be filtered out.
+  *
+  * @param   {Object} msg
+  *
+  * @private
+  * @returns {void}
+  */
+  _onPrivateMessage <span class="fstat-no" title="function not covered" >(msg) {</span>
+<span class="cstat-no" title="statement not covered" >    if (msg.originalTopic !== C.TOPIC.RPC) {</span>
+<span class="cstat-no" title="statement not covered" >      return</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!msg.data || msg.data.length &lt; 2) {</span>
+<span class="cstat-no" title="statement not covered" >      this._options.logger.log(C.LOG_LEVEL.WARN, C.EVENT.INVALID_MSGBUS_MESSAGE, msg.data)</span>
+<span class="cstat-no" title="statement not covered" >      return</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    msg.topic = msg.originalTopic</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (msg.action === C.ACTIONS.ERROR &amp;&amp; msg.data[0] === C.EVENT.NO_RPC_PROVIDER) {</span>
+<span class="cstat-no" title="statement not covered" >      msg.action = C.ACTIONS.REJECTION</span>
+<span class="cstat-no" title="statement not covered" >      msg.data = msg.data[1]</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (msg.action === C.ACTIONS.REQUEST) {</span>
+<span class="cstat-no" title="statement not covered" >      const proxy = new RpcProxy(this._options, msg.remotePrivateTopic, msg.data[0], msg.data[1])</span>
+<span class="cstat-no" title="statement not covered" >      this._makeRpc(proxy, msg, C.SOURCE_MESSAGE_CONNECTOR)</span>
+    } else <span class="cstat-no" title="statement not covered" >if ((msg.action === C.ACTIONS.ACK || msg.action === C.ACTIONS.ERROR) &amp;&amp; msg.data[2]) {</span>
+<span class="cstat-no" title="statement not covered" >      this._rpcs.get(msg.data[2]).rpc.handle(msg)</span>
+    } else <span class="cstat-no" title="statement not covered" >if (this._rpcs.get(msg.data[1])) {</span>
+<span class="cstat-no" title="statement not covered" >      this._rpcs.get(msg.data[1]).rpc.handle(msg)</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this._options.logger.log(C.LOG_LEVEL.WARN, C.EVENT.UNSOLICITED_MSGBUS_MESSAGE, msg)</span>
+    }
+  }
+&nbsp;
+&nbsp;
+}
+&nbsp;
+/**
+* Checks if the incoming message is valid, e.g. if rpcName
+* is present for subscribe / unsubscribe messages or if
+* rpcName and correlationId is present for rpc calls.
+*
+* @param   {Number}  dataLength    The expected number of entries in the data array
+* @param   {SocketWrapper} socketWrapper
+* @param   {Object} message parsed and validated deepstream message
+*
+* @private
+* @returns {Boolean} isValid
+*/
+<span class="fstat-no" title="function not covered" >function isValidMessage (dataLength, socketWrapper, message) {</span>
+<span class="cstat-no" title="statement not covered" >  if (message.data &amp;&amp; message.data.length &gt;= dataLength &amp;&amp; typeof message.data[0] === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >    return true</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  socketWrapper.sendError(C.TOPIC.RPC, C.EVENT.INVALID_MESSAGE_DATA, message.raw)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false</span>
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Thu Apr 20 2017 16:07:14 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
